@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StudentListManagerClass</class>
+ <widget class="QMainWindow" name="StudentListManagerClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StudentListManager</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dodaj Studenta</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="delButton">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>80</y>
+      <width>91</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Usuń studenta</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>listWidget</tabstop>
+ </tabstops>
+ <resources>
+  <include location="StudentListManager.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>addButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>398</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>delButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>delButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>509</x>
+     <y>168</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addButton_clicked()</slot>
+  <slot>delButton_clicked()</slot>
+ </slots>
+</ui>
