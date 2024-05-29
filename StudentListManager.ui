@@ -50,6 +50,19 @@
      <string>Usuń studenta</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="clearButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>120</y>
+      <width>151</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wyczyść Listę</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

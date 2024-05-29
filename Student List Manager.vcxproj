@@ -95,8 +95,12 @@
     <QtRcc Include="StudentListManager.qrc" />
     <QtUic Include="StudentListManager.ui" />
     <QtMoc Include="StudentListManager.h" />
+    <ClCompile Include="Student.cpp" />
     <ClCompile Include="StudentListManager.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
