@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_StudentListManager.h"
+#include "Student.h"
 
 class StudentListManager : public QMainWindow
 {
@@ -13,11 +14,10 @@ public:
 
 private:
     Ui::StudentListManagerClass ui;
-    void addStudent(const QString& firstName, const QString& lastName);
+    void addStudent(const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major);
 
 private slots:
     void addButton_clicked();
     void delButton_clicked();
     void clearButton_clicked();
-
 };
