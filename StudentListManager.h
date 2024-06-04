@@ -15,9 +15,11 @@ public:
 private:
     Ui::StudentListManagerClass ui;
     void addStudent(const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major);
+    void editStudent(int index, const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major);
 
 private slots:
     void addButton_clicked();
     void delButton_clicked();
     void clearButton_clicked();
+    void editButton_clicked();
 };
