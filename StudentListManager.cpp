@@ -7,6 +7,8 @@
 #include <QFile>
 #include <QDir>
 #include <QCoreApplication>
+#include <QFileDialog>
+
 StudentListManager::StudentListManager(QWidget* parent)
     : QMainWindow(parent)
 {
@@ -128,4 +130,78 @@ void StudentListManager::editStudent(int index, const QString& firstName, const 
     if (item) {
         item->setText(student.getFullName() + " (" + major + ", " + (isActive ? "Active" : "Inactive") + ", " + (isFullTime ? "Full-Time" : "Part-Time") + ")");
     }
+}
+
+
+void StudentListManager::saveButton_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Student List"), "", tr("Text Files (*.txt);;All Files (*)"));
+    QFile file(fileName);
+    
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "error", "file write error");
+        return;
+    }
+
+    QTextStream out(&file);
+
+    for (int i = 0; i < ui.listWidget->count(); ++i) {
+        QListWidgetItem* item = ui.listWidget->item(i);
+        if (item) {
+            if (!item->isHidden()) {
+                out << item->text() << "\n";
+            }
+        }
+    }
+
+    file.close();
+}
+
+void StudentListManager::loadButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Student List"), "", tr("Text Files (*.txt);;All Files (*)"));
+    if (fileName.isEmpty()) {
+        QMessageBox::warning(this, "error", "file read error");
+    }
+
+    QFile file(fileName);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "error", "file read error");
+        return;
+    }
+
+
+
+    QTextStream in(&file);
+    
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList inputs;
+        QString firstName, lastName, major;
+        bool isActive, isFullTime;
+        inputs = line.split(u' ');
+        firstName = inputs[0];
+        lastName = inputs[1];
+        major = inputs[2].sliced(1);
+        major.chop(1);
+        
+        if (inputs[3].size() == 7) {
+            isActive = true;
+        }
+        else {
+            isActive = false;
+        }
+
+        if (inputs[4].size() == 10) {
+            isFullTime = true;
+        }
+        else {
+            isFullTime = false;
+        }
+
+        addStudent(firstName, lastName, isActive, isFullTime, major);
+    }
+
+    file.close();
 }

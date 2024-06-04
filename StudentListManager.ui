@@ -48,6 +48,20 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="saveButton">
+        <property name="text">
+         <string>Zapisz do pliiku</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loadButton">
+        <property name="text">
+         <string>Wczytaj z pliku</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -87,8 +101,8 @@
    <slot>addButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>338</x>
-     <y>101</y>
+     <x>546</x>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>500</x>
@@ -103,8 +117,8 @@
    <slot>delButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>159</y>
+     <x>547</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
      <x>509</x>
@@ -112,9 +126,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>loadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>loadButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>551</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>saveButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>542</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>542</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButton_clicked()</slot>
   <slot>delButton_clicked()</slot>
+  <slot>loadButton_clicked()</slot>
+  <slot>saveButton_clicked()</slot>
  </slots>
 </ui>

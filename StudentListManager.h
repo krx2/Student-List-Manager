@@ -22,4 +22,6 @@ private slots:
     void delButton_clicked();
     void clearButton_clicked();
     void editButton_clicked();
+    void loadButton_clicked();
+    void saveButton_clicked();
 };
