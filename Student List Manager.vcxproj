@@ -95,11 +95,13 @@
     <QtRcc Include="StudentListManager.qrc" />
     <QtUic Include="StudentListManager.ui" />
     <QtMoc Include="StudentListManager.h" />
+    <ClCompile Include="Human.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="StudentListManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Human.h" />
     <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

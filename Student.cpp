@@ -1,19 +1,7 @@
 #include "Student.h"
 
 Student::Student(const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major)
-    : firstName(firstName), lastName(lastName), isActive(isActive), isFullTime(isFullTime), major(major) {}
-
-QString Student::getFirstName() const {
-    return firstName;
-}
-
-QString Student::getLastName() const {
-    return lastName;
-}
-
-QString Student::getFullName() const {
-    return firstName + " " + lastName;
-}
+    : Human(firstName, lastName), isActive(isActive), isFullTime(isFullTime), major(major) {}
 
 bool Student::getIsActive() const {
     return isActive;
