@@ -62,7 +62,9 @@ void StudentListManager::addButton_clicked()
     }
 
     addStudent(firstName, lastName, isActive, isFullTime, major);
+    QMessageBox::information(this, tr("Success"), tr("Student added successfully."));
 }
+
 void StudentListManager::editButton_clicked()
 {
     int currentRow = ui.listWidget->currentRow();
@@ -104,17 +106,26 @@ void StudentListManager::editButton_clicked()
     }
 
     editStudent(currentRow, firstName, lastName, isActive, isFullTime, major);
+    QMessageBox::information(this, tr("Success"), tr("Student edited successfully."));
 }
 
 void StudentListManager::delButton_clicked()
 {
-    ui.listWidget->setRowHidden(ui.listWidget->currentRow(), true);
+    int currentRow = ui.listWidget->currentRow();
+    if (currentRow >= 0) {
+        ui.listWidget->setRowHidden(currentRow, true);
+        QMessageBox::information(this, tr("Success"), tr("Student deleted successfully."));
+    }
+    else {
+        QMessageBox::warning(this, tr("No selection"), tr("Please select a student to delete."));
+    }
 }
 
 void StudentListManager::clearButton_clicked()
 {
     ui.listWidget->clear();
     ui.clearButton->setStyleSheet("background-color: green; color: white;");
+    QMessageBox::information(this, tr("Success"), tr("All students cleared successfully."));
 }
 
 void StudentListManager::addStudent(const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major)
