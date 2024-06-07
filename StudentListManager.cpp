@@ -165,11 +165,14 @@ void StudentListManager::saveButton_clicked()
         }
     }
 
+    QMessageBox::information(this, "info", "student list saved successfully");
+
     file.close();
 }
 
 void StudentListManager::loadButton_clicked()
 {
+    QVector<int> errorLines;
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Student List"), "", tr("Text Files (*.txt);;All Files (*)"));
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "error", "file read error");
@@ -186,6 +189,7 @@ void StudentListManager::loadButton_clicked()
 
     QTextStream in(&file);
     
+    int i = 1;
     while (!in.atEnd()) {
         QString line = in.readLine();
         QStringList inputs;
@@ -194,6 +198,14 @@ void StudentListManager::loadButton_clicked()
         inputs = line.split(u' ');
         firstName = inputs[0];
         lastName = inputs[1];
+
+        if (inputs[2][0] != '(') {
+            
+            errorLines.append(i);
+            i++;
+            continue;
+        }
+
         major = inputs[2].sliced(1);
         major.chop(1);
         
@@ -212,6 +224,19 @@ void StudentListManager::loadButton_clicked()
         }
 
         addStudent(firstName, lastName, isActive, isFullTime, major);
+        i++;
+    }
+
+    if (errorLines.isEmpty()) {
+        QMessageBox::information(this, "info", "student list loaded successfully");
+    }
+    else {
+        QString errorLinesString;
+        for (int i = 0; i < errorLines.size(); i++) {
+            errorLinesString.append(QString::number(errorLines[i]));
+            errorLinesString.append((QChar)' ');
+        }
+        QMessageBox::warning(this, "error", "text formating error in lines: " + errorLinesString);
     }
 
     file.close();
