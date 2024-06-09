@@ -21,44 +21,44 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QPushButton" name="delButton">
-        <property name="text">
-         <string>Usuń studenta</string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="addButton">
         <property name="text">
-         <string>Dodaj Studenta</string>
+         <string>Add student</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="editButton">
         <property name="text">
-         <string>Edycja Studenta</string>
+         <string>Edit student</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="delButton">
+        <property name="text">
+         <string>Delete student</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="clearButton">
         <property name="text">
-         <string>Wyczyść Listę</string>
+         <string>Clear list</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="saveButton">
         <property name="text">
-         <string>Zapisz do pliiku</string>
+         <string>Save to file</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="loadButton">
         <property name="text">
-         <string>Wczytaj z pliku</string>
+         <string>Read from file</string>
         </property>
        </widget>
       </item>

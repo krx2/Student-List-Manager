@@ -167,7 +167,7 @@ void StudentListManager::saveButton_clicked()
     QFile file(fileName);
     
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "error", "file write error");
+        QMessageBox::warning(this, "error", "No file chosen/File error");
         return;
     }
 
@@ -192,14 +192,14 @@ void StudentListManager::loadButton_clicked()
     QVector<int> errorLines;
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Student List"), "", tr("Text Files (*.txt);;All Files (*)"));
     if (fileName.isEmpty()) {
-        QMessageBox::warning(this, "error", "file read error");
+        QMessageBox::warning(this, "error", "No file chosen/File error");
         return;
     }
 
     QFile file(fileName);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "error", "file read error");
+        QMessageBox::warning(this, "error", "No file chosen/File error");
         return;
     }
 
