@@ -14,42 +14,57 @@
    <string>StudentListManager</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>40</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Dodaj Studenta</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="delButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>80</y>
-      <width>91</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Usuń studenta</string>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QListWidget" name="listWidget"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="addButton">
+        <property name="text">
+         <string>Add student</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="editButton">
+        <property name="text">
+         <string>Edit student</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="delButton">
+        <property name="text">
+         <string>Delete student</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="clearButton">
+        <property name="text">
+         <string>Clear list</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="saveButton">
+        <property name="text">
+         <string>Save to file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loadButton">
+        <property name="text">
+         <string>Read from file</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -86,8 +101,8 @@
    <slot>addButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>91</y>
+     <x>546</x>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>500</x>
@@ -102,8 +117,8 @@
    <slot>delButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>131</y>
+     <x>547</x>
+     <y>91</y>
     </hint>
     <hint type="destinationlabel">
      <x>509</x>
@@ -111,9 +126,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>loadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>loadButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>275</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>551</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>StudentListManagerClass</receiver>
+   <slot>saveButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>542</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>542</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addButton_clicked()</slot>
   <slot>delButton_clicked()</slot>
+  <slot>loadButton_clicked()</slot>
+  <slot>saveButton_clicked()</slot>
  </slots>
 </ui>
