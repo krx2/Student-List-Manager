@@ -80,7 +80,7 @@ void StudentListManager::editButton_clicked()
 
     bool ok;
     QString firstName = QInputDialog::getText(this, tr("Edit First Name"),
-        tr("First Name:"), QLineEdit::Normal,
+        tr("First Name: (pass: empty)"), QLineEdit::Normal,
         "", &ok);
     if (!ok) {
         QMessageBox::warning(this, "error", "input error");
@@ -91,7 +91,7 @@ void StudentListManager::editButton_clicked()
     }
 
     QString lastName = QInputDialog::getText(this, tr("Edit Last Name"),
-        tr("Last Name:"), QLineEdit::Normal,
+        tr("Last Name: (pass: empty)"), QLineEdit::Normal,
         "", &ok);
     if (!ok) {
         QMessageBox::warning(this, "error", "input error");
@@ -102,17 +102,17 @@ void StudentListManager::editButton_clicked()
     }
 
     int ret = QMessageBox::question(this, tr("Active Status"),
-        tr("Is the student active?"),
+        tr("Is the student active? (default: no)"),
         QMessageBox::Yes | QMessageBox::No);
     bool isActive = (ret == QMessageBox::Yes);
 
     ret = QMessageBox::question(this, tr("Study Mode"),
-        tr("Is the student full-time?"),
+        tr("Is the student full-time? (default: no)"),
         QMessageBox::Yes | QMessageBox::No);
     bool isFullTime = (ret == QMessageBox::Yes);
 
     QString major = QInputDialog::getText(this, tr("Edit Major"),
-        tr("Major:"), QLineEdit::Normal,
+        tr("Major: (pass: empty)"), QLineEdit::Normal,
         "", &ok);
     if (!ok) {
         QMessageBox::warning(this, "error", "input error");
@@ -193,6 +193,7 @@ void StudentListManager::loadButton_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open Student List"), "", tr("Text Files (*.txt);;All Files (*)"));
     if (fileName.isEmpty()) {
         QMessageBox::warning(this, "error", "file read error");
+        return;
     }
 
     QFile file(fileName);
