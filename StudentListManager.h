@@ -16,6 +16,7 @@ private:
     Ui::StudentListManagerClass ui;
     void addStudent(const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major);
     void editStudent(int index, const QString& firstName, const QString& lastName, bool isActive, bool isFullTime, const QString& major);
+    Student getStudentFromCurrent();
 
 private slots:
     void addButton_clicked();

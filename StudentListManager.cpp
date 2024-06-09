@@ -15,9 +15,9 @@ StudentListManager::StudentListManager(QWidget* parent)
     ui.setupUi(this);
     ui.clearButton->setStyleSheet("background-color: red; color: white;");
 
-    for (int i = 1; i < 20; i++) {
-        addStudent(QString::number(i) + "FirstName", "LastName", true, true, "Informatyka");
-    }
+    //for (int i = 1; i < 20; i++) {
+    //    addStudent(QString::number(i) + "FirstName", "LastName", true, true, "Informatyka");
+    //}
 
     connect(ui.clearButton, &QPushButton::clicked, this, &StudentListManager::clearButton_clicked);
     connect(ui.editButton, &QPushButton::clicked, this, &StudentListManager::editButton_clicked);
@@ -34,6 +34,7 @@ void StudentListManager::addButton_clicked()
         tr("First Name:"), QLineEdit::Normal,
         "", &ok);
     if (!ok || firstName.isEmpty()) {
+        QMessageBox::warning(this, "error", "First name can't be empty");
         return;
     }
 
@@ -41,16 +42,17 @@ void StudentListManager::addButton_clicked()
         tr("Last Name:"), QLineEdit::Normal,
         "", &ok);
     if (!ok || lastName.isEmpty()) {
+        QMessageBox::warning(this, "error", "Last name can't be empty");
         return;
     }
 
     int ret = QMessageBox::question(this, tr("Active Status"),
-        tr("Is the student active?"),
+        tr("Is the student active? (default: no)"),
         QMessageBox::Yes | QMessageBox::No);
     bool isActive = (ret == QMessageBox::Yes);
 
     ret = QMessageBox::question(this, tr("Study Mode"),
-        tr("Is the student full-time?"),
+        tr("Is the student full-time? (default: no)"),
         QMessageBox::Yes | QMessageBox::No);
     bool isFullTime = (ret == QMessageBox::Yes);
 
@@ -58,6 +60,7 @@ void StudentListManager::addButton_clicked()
         tr("Major:"), QLineEdit::Normal,
         "", &ok);
     if (!ok || major.isEmpty()) {
+        QMessageBox::warning(this, "error", "Major can't be empty");
         return;
     }
 
@@ -73,19 +76,29 @@ void StudentListManager::editButton_clicked()
         return;
     }
 
+    Student selected = getStudentFromCurrent();
+
     bool ok;
     QString firstName = QInputDialog::getText(this, tr("Edit First Name"),
         tr("First Name:"), QLineEdit::Normal,
         "", &ok);
-    if (!ok || firstName.isEmpty()) {
+    if (!ok) {
+        QMessageBox::warning(this, "error", "input error");
         return;
+    }
+    else if (firstName.isEmpty()) {
+        firstName = selected.getFirstName();
     }
 
     QString lastName = QInputDialog::getText(this, tr("Edit Last Name"),
         tr("Last Name:"), QLineEdit::Normal,
         "", &ok);
-    if (!ok || lastName.isEmpty()) {
+    if (!ok) {
+        QMessageBox::warning(this, "error", "input error");
         return;
+    }
+    else if (lastName.isEmpty()) {
+        lastName = selected.getLastName();
     }
 
     int ret = QMessageBox::question(this, tr("Active Status"),
@@ -101,8 +114,12 @@ void StudentListManager::editButton_clicked()
     QString major = QInputDialog::getText(this, tr("Edit Major"),
         tr("Major:"), QLineEdit::Normal,
         "", &ok);
-    if (!ok || major.isEmpty()) {
+    if (!ok) {
+        QMessageBox::warning(this, "error", "input error");
         return;
+    }
+    else if (major.isEmpty()) {
+        major = selected.getMajor();
     }
 
     editStudent(currentRow, firstName, lastName, isActive, isFullTime, major);
@@ -240,4 +257,36 @@ void StudentListManager::loadButton_clicked()
     }
 
     file.close();
+}
+
+Student StudentListManager::getStudentFromCurrent()
+{
+    QList<QListWidgetItem*> selectedItems = ui.listWidget->selectedItems();
+    QListWidgetItem* selectedItem = selectedItems.first();
+    QString line = selectedItem->text();
+    QStringList inputs;
+    QString firstName, lastName, major;
+    bool isActive, isFullTime;
+    inputs = line.split(u' ');
+    firstName = inputs[0];
+    lastName = inputs[1];
+    major = inputs[2].sliced(1);
+    major.chop(1);
+
+    if (inputs[3].size() == 7) {
+        isActive = true;
+    }
+    else {
+        isActive = false;
+    }
+
+    if (inputs[4].size() == 10) {
+        isFullTime = true;
+    }
+    else {
+        isFullTime = false;
+    }
+
+    Student current(firstName, lastName, isActive, isFullTime, major);
+    return current;
 }
